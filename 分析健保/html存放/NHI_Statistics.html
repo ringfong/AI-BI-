@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+  <title>自費填入</title>
+
+  <!-- CSS引用 -->  
+  <link rel="stylesheet" href="../resources/core/jquery-ui/1.10.3/jquery-ui.css" />
+  
+  <!-- CSS控制 -->
+  <link rel="stylesheet" href="../resources/css/NHI_Statistics.css" />
+  
+  <!-- JQ引用 -->
+  <script src="../resources/core/jquery/1.11.1/jquery.min.js"></script>
+  <script src="../resources/core/jquery-ui/1.10.3/jquery-ui.js"></script>    
+  <!-- echarts引用 -->
+  <script src="../resources/core/echarts.js"></script>
+  
+</head>
+<body>
+  <div id="allbackground">
+    <!-- 導航欄 -->
+    <div class="chart_bar">
+      <div class="chart_bar_logo">
+        <div>
+          <img src="../images/icon.png" />
+          <div>AI+BI 樞紐分析</div>
+        </div>
+      </div>
+      <div class="chart_bar_main">
+        <!-- 診所營運數據 -->
+        <div class="clinic_operational_data">
+          <img
+            src="../images/clinic.png"
+            class="scrollbarIcon"
+          />診所營運數據<img src="../images/hide.png" class="hidebar_icon" />
+        </div>
+        <div class="d-none child1">
+          <div class="flex-verticalcenter">
+            健保數據<img src="../images/hide.png" class="hidebar_icon" />
+          </div>
+
+          <div class="d-none child2">
+            <div>申報總額統計</div>
+            <div>申報項目統計</div>
+          </div>
+          <div class="flex-verticalcenter">
+            自費數據<img src="../images/hide.png" class="hidebar_icon" />
+          </div>
+
+          <div class="d-none child2">
+            <div>Case量</div>
+            <div class="flex-verticalcenter">
+              自費項目金額統計<img
+                src="../images/hide.png"
+                class="hidebar_icon"
+              />
+            </div>
+            <div class="d-none child3">
+              <div>全院所</div>
+              <div>各所醫師</div>
+            </div>
+            <div class="flex-verticalcenter">
+              自費治療項目排名統計<img
+                src="../images/hide.png"
+                class="hidebar_icon"
+              />
+            </div>
+            <div class="d-none child3">
+              <div>歷年植體總數</div>
+            </div>
+            <div>利潤率分析</div>
+            <div>自費轉換率</div>
+          </div>
+          <div class="flex-verticalcenter">
+            經營費用與成本<img
+              src="../images/hide.png"
+              class="hidebar_icon"
+            />
+          </div>
+
+          <div class="d-none child2">
+            <div>營運推廣投入產出比</div>
+            <div>呆帳率</div>
+          </div>
+          <div>醫療團隊</div>
+          <div></div>
+          <div class="d-none child2">
+            <div>醫療團隊穩定性</div>
+          </div>
+        </div>
+        <!-- 醫師數據 -->
+        <div class="doc_data">
+          <img src="../images/doc.png" class="scrollbarIcon" />醫師數據<img
+            src="../images/show.png"
+            class="hidebar_icon"
+          />
+        </div>
+        <div class="child1">
+          <div class="flex-verticalcenter">
+            診次/次數<img src="../images/hide.png" class="hidebar_icon" />
+          </div>
+
+          <div class="d-none child2">
+            <div>單一診次產值</div>
+          </div>
+          <div class="flex-verticalcenter">
+            醫師業績表<img src="../images/show.png" class="hidebar_icon" />
+          </div>
+
+          <div class="child2">
+            <div>健保</div>
+            <div>自費</div>
+            <div>綜合</div>
+          </div>
+          <div>
+            平均單價
+          </div>
+          <div>綜合分析</div>
+        </div>
+        <!-- 病患數據 -->
+        <div class="patient_data">
+          <img
+            src="../images/patient.png"
+            class="scrollbarIcon"
+          />病患數據<img src="../images/hide.png" class="hidebar_icon" />
+        </div>
+        <div class="d-none child1">
+          <div>
+            出診患者人數
+          </div>
+          <div>
+            病患回診率
+          </div>
+          <div>
+            居住地分析
+          </div>
+          <div>
+            預約到診率
+          </div>
+          <div>
+            回診次數
+          </div>
+          <div>
+            中老年人牙齒缺失率
+          </div>
+          <div>
+            兒童乳牙齲齒率
+          </div>
+          <div>病患家屬關係圖譜</div>
+        </div>
+        <!-- 助理數據 -->
+        <div class="assistant_data">
+          <img
+            src="../images/assistant.png"
+            class="scrollbarIcon"
+          />助理收據<img src="../images/hide.png" class="hidebar_icon" />
+        </div>
+        <div class="d-none child1">
+          <div>助理配額</div>
+        </div>
+        <!-- 牙材商數據 -->
+        <div class="dentist_data">
+          <img
+            src="../images/dentist.png"
+            class="scrollbarIcon"
+          />牙材/設備數據<img src="../images/hide.png" class="hidebar_icon" />
+        </div>
+        <div class="d-none child1">
+          <div class="flex-verticalcenter">
+            材料數據<img src="../images/hide.png" class="hidebar_icon" />
+          </div>
+          <div class="d-none child2">
+            <div>自費性材料過期表</div>
+            <div>材料進貨歷史紀錄</div>
+          </div>
+          <div class="flex-verticalcenter">
+            設備數據<img src="../images/hide.png" class="hidebar_icon" />
+          </div>
+          <div class="d-none child2">
+            <div>單台治療椅產出量</div>
+            <div>設備損壞率</div>
+          </div>
+        </div>
+        <!-- 技工數據 -->
+        <div class="engineman_data">
+          <img
+            src="../images/engineman.png"
+            class="scrollbarIcon"
+          />技工數據<img src="../images/hide.png" class="hidebar_icon" />
+        </div>
+        <div class="d-none child1">
+          <div>技工對帳單</div>
+        </div>
+        <!-- 其他數據 -->
+        <div class="other_data">
+          <img src="../images/other.png" class="scrollbarIcon" />其他數據<img
+            src="../images/hide.png"
+            class="hidebar_icon"
+          />
+        </div>
+        <div class="child1 d-none">
+          <div>全台醫療院所家數</div>
+          <div>牙醫師縣市分布</div>
+          <!-- <div>每萬人口醫事人員數</div> -->
+        </div>
+      </div>
+    </div>
+    <!-- 健保統計區塊 -->
+    <div id="NHIS_area">
+      <!-- table區域 -->
+      <div id="NHIS_Table_area">
+        <div class="top_text">醫師健保項目金額統計</div>
+        <div id="SelfFilling_statistics_button_area">
+          <!-- 讀取時填入年份 -->
+        </div>
+        <div id="scroll_table">
+          <table  id="NHIS_table">
+            <thead>
+              <tr id="ROCyearandmonth">
+                <th>醫師/月份</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- 動態填入 -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- 繪圖區域 -->
+      <div id="EchartsView">
+        <div class="top_text">醫師健保金額統計圖</div>
+        <div id="NHIS_AmountStatistics"></div>
+      </div>
+    </div>
+  </div>
+    
+  <!-- JS控制 -->  
+  <script src="../resources/js/NHI_Statistics.js"></script>
+  <script src="../resources/js/menu.js"></script>
+</body>
+</html>

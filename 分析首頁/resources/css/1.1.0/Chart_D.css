@@ -1,0 +1,199 @@
+/* #allbackground{
+    width: 1680px;
+    display: flex;
+    font-family: "Roboto-Regular", "PingFangTC-Regular", "Microsoft JhengHei";
+    flex-wrap: wrap;
+} */
+.top_text{
+    width: calc(100% - 63px);;
+    font-size: 21px;
+    color: #6D7278;
+    padding-left: 25px;
+    font-weight: 700;
+    margin-left: 30px;
+    margin-top: 25px;
+    background-image: url("../../../images/titleIcon.png");
+    background-size: 18px;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+/* 數字金額顯示區 */
+.digital_area{
+    width: 483px;
+    height: 130px;
+    margin-top: 98px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+/* 上月統計數字格式 */
+.lastmonth_statistics{
+    height: 100px;
+    font-size: 72px;
+    color: #42464B;
+}
+/* 與前月比較區 */
+.compare_area{
+    height: 29px;
+    font-size: 21px;
+    color: #42464B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* 與前月比較上升 */
+.compare_up{
+    padding-right: 20px;
+    color: #539A08;
+    background-image: url("../../../images/uparrow.png");
+    background-size: 18px;
+    background-repeat: no-repeat;
+    background-position: right;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+/* 與前月比較下降 */
+.compare_down{
+    padding-right: 20px;
+    color: #CD1D1D;
+    background-image: url("../../../images/downarrow.png");
+    background-size: 18px;
+    background-repeat: no-repeat;
+    background-position: right;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* 總金額區域 */
+#Total_Amount_area{
+    width: 483px;
+    height: 465px;
+    background: #FFFFFF;
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,0.17);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* margin-right: 57px; */
+    /* margin-bottom: 57px; */
+}
+/* 總金額圖表 */
+#Total_Amount{
+    width: 483px;
+    height: 184px;
+}
+
+/* 診次數區域 */
+#Consultation_Count_area{
+    width: 483px;
+    height: 465px;
+    background: #FFFFFF;
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,0.17);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* margin-right: 57px;
+    margin-bottom: 57px; */
+}
+/* 診次數圖表 */
+#Consultation_Count{
+    width: 483px;
+    height: 184px;
+}
+
+/* 單一診營業額 */
+#Single_Turnover_area{
+    width: 483px;
+    height: 465px;
+    background: #FFFFFF;
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,0.17);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* margin-right: 57px;
+    margin-bottom: 57px; */
+}
+/* 單一診營業額 */
+#Single_Turnover{
+    width: 483px;
+    height: 184px;
+}
+
+/* 治療項目/治療項目金額區域 */
+#Item_Amount_area{
+    width: 754px;
+    height: 465px;
+    background: #FFFFFF;
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,0.17);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* margin-right: 57px;
+    margin-bottom: 57px; */
+}
+/* 治療項目/治療項目金額 */
+#Item_Amount{
+    width: 754px;
+    height: 414px;
+}
+
+/* 病患地址分布區域 */
+#PatientAddress_area{
+    width: 754px;
+    height: 465px;
+    background: #FFFFFF;
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,0.17);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* margin-bottom: 57px; */
+}
+/* 病患地址分布 */
+#PatientAddress{
+    width: 754px;
+    height: 414px;
+}
+
+/* 時間分布區塊 */
+#TimeDistributed_area{
+    width: 1566px;
+    height: 798px;
+    background: #FFFFFF;
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,0.17);
+    border-radius: 20px;
+    /* margin-right: 57px; */
+}
+/* 時間分布上方欄 */
+#td_topbar{
+    width: 1566px;
+    height: 59px;
+    background: #2B51ED;
+    border-radius: 20px 20px 0 0;
+    font-size: 21px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+#td_topbar_text_first{
+    margin-left: 64px;
+}
+/* 時間分布Chart */
+#Time_Distributed{
+    width: 1566px;
+    height: 660px;
+}
+

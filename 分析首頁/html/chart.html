@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>病患資料</title>
+    <!-- CSS引用 -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../resources/css/1.1.0/chart.css"
+    />
+    <link rel="stylesheet" href="../resources/css/1.1.0/Chart_D.css" />
+  </head>
+  <body>
+    <div class="chart">
+      <div class="chart_bar">
+        <div class="chart_bar_logo">
+          <div>
+            <img src="../images/icon.png" />
+            <div>AI+BI 樞紐分析</div>
+          </div>
+        </div>
+        <div class="chart_bar_main">
+          <!-- 診所營運數據 -->
+          <div class="clinic_operational_data">
+            <img
+              src="../images/clinic.png"
+              class="scrollbarIcon"
+            />診所營運數據<img src="../images/hide.png" class="hidebar_icon" />
+          </div>
+          <div class="d-none child1">
+            <div class="flex-verticalcenter">
+              健保數據<img src="../images/hide.png" class="hidebar_icon" />
+            </div>
+
+            <div class="d-none child2">
+              <div>申報總額統計</div>
+              <div>申報項目統計</div>
+            </div>
+            <div class="flex-verticalcenter">
+              自費數據<img src="../images/hide.png" class="hidebar_icon" />
+            </div>
+
+            <div class="d-none child2">
+              <div>Case量</div>
+              <div class="flex-verticalcenter">
+                自費項目金額統計<img
+                  src="../images/hide.png"
+                  class="hidebar_icon"
+                />
+              </div>
+              <div class="d-none child3">
+                <div>全院所</div>
+                <div>各所醫師</div>
+              </div>
+              <div class="flex-verticalcenter">
+                自費治療項目排名統計<img
+                  src="../images/hide.png"
+                  class="hidebar_icon"
+                />
+              </div>
+              <div class="d-none child3">
+                <div>歷年植體總數</div>
+              </div>
+              <div>利潤率分析</div>
+              <div>自費轉換率</div>
+            </div>
+            <div class="flex-verticalcenter">
+              經營費用與成本<img
+                src="../images/hide.png"
+                class="hidebar_icon"
+              />
+            </div>
+
+            <div class="d-none child2">
+              <div>營運推廣投入產出比</div>
+              <div>呆帳率</div>
+            </div>
+            <div>醫療團隊</div>
+            <div></div>
+            <div class="d-none child2">
+              <div>醫療團隊穩定性</div>
+            </div>
+          </div>
+          <!-- 醫師數據 -->
+          <div class="doc_data">
+            <img src="../images/doc.png" class="scrollbarIcon" />醫師數據<img
+              src="../images/hide.png"
+              class="hidebar_icon"
+            />
+          </div>
+          <div class="d-none child1">
+            <div class="flex-verticalcenter">
+              診次/次數<img src="../images/hide.png" class="hidebar_icon" />
+            </div>
+
+            <div class="d-none child2">
+              <div>單一診次產值</div>
+            </div>
+            <div class="flex-verticalcenter">
+              醫師業績表<img src="../images/hide.png" class="hidebar_icon" />
+            </div>
+
+            <div class="d-none child2">
+              <div>健保</div>
+              <div>自費</div>
+              <div>綜合</div>
+            </div>
+            <div>
+              平均單價
+            </div>
+            <div>綜合分析</div>
+          </div>
+          <!-- 病患數據 -->
+          <div class="patient_data">
+            <img
+              src="../images/patient.png"
+              class="scrollbarIcon"
+            />病患數據<img src="../images/hide.png" class="hidebar_icon" />
+          </div>
+          <div class="d-none child1">
+            <div>
+              出診患者人數
+            </div>
+
+            <div>
+              病患回診率
+            </div>
+
+            <div>
+              居住地分析
+            </div>
+
+            <div>
+              預約到診率
+            </div>
+
+            <div>
+              回診次數
+            </div>
+
+            <div>
+              中老年人牙齒缺失率
+            </div>
+
+            <div>
+              兒童乳牙齲齒率
+            </div>
+
+            <div>病患家屬關係圖譜</div>
+          </div>
+          <!-- 助理數據 -->
+          <div class="assistant_data">
+            <img
+              src="../images/assistant.png"
+              class="scrollbarIcon"
+            />助理收據<img src="../images/hide.png" class="hidebar_icon" />
+          </div>
+          <div class="d-none child1">
+            <div>助理配額</div>
+          </div>
+          <!-- 牙材商數據 -->
+          <div class="dentist_data">
+            <img
+              src="../images/dentist.png"
+              class="scrollbarIcon"
+            />牙材/設備數據<img src="../images/hide.png" class="hidebar_icon" />
+          </div>
+          <div class="d-none child1">
+            <div class="flex-verticalcenter">
+              材料數據<img src="../images/hide.png" class="hidebar_icon" />
+            </div>
+            <div class="d-none child2">
+              <div>自費性材料過期表</div>
+              <div>材料進貨歷史紀錄</div>
+            </div>
+            <div class="flex-verticalcenter">
+              設備數據<img src="../images/hide.png" class="hidebar_icon" />
+            </div>
+            <div class="d-none child2">
+              <div>單台治療椅產出量</div>
+              <div>設備損壞率</div>
+            </div>
+          </div>
+          <!-- 技工數據 -->
+          <div class="engineman_data">
+            <img
+              src="../images/engineman.png"
+              class="scrollbarIcon"
+            />技工數據<img src="../images/hide.png" class="hidebar_icon" />
+          </div>
+          <div class="d-none child1">
+            <div>技工對帳單</div>
+          </div>
+          <!-- 其他數據 -->
+          <div class="other_data">
+            <img src="../images/other.png" class="scrollbarIcon" />其他數據<img
+              src="../images/hide.png"
+              class="hidebar_icon"
+            />
+          </div>
+          <div class="d-none child1">
+            <div>全台醫療院所家數</div>
+            <div>機構職業醫事人員數</div>
+            <div>每萬人口醫事人員數</div>
+          </div>
+        </div>
+      </div>
+      <div class="chart_main">
+        <div
+          style="height:121px;
+          position: relative
+          "
+        >
+          <div class="chose_doc">
+            <div class="chose_doc_total"><span>所有醫師</span><img src="../images/show.png"></div>
+
+            <div class="chose_doc_option d-nonei">所有醫師</div>
+            <div class="chose_doc_option2 d-nonei">
+              <div>A醫師</div>
+
+            </div>
+          </div>
+        </div>
+        <div
+          style="display: flex;align-items: center;justify-content: space-evenly;width: 100%"
+        >
+          <!-- 病患性別 -->
+          <div class="patient_sexual">
+            <div class="patient_sexual_title">
+              <img src="../images/titleIcon.png" />病患性別
+            </div>
+            <div class="patient_sexual_pic">
+              <img src="../images/woman.png" /><img src="../images/man.png" />
+            </div>
+            <div class="patient_sexual_personNum">
+              <div><span class="woman_num"></span>人</div>
+              <div><span class="man_num"></span>人</div>
+            </div>
+            <div class="patient_sexual_personPercent">
+              <div>佔比例<span class="woman_percent"></span>%</div>
+              <div>佔比例<span class="man_percent"></span>%</div>
+            </div>
+            <div class="patient_sexual_addOrless">
+              <div class="patient_woman_addOrless">
+                <!-- 綠+ -->
+                <span></span>
+                <img src="" class="patient_sexual_addOrless_arrorw" />
+                比上個月
+                <span></span>
+              </div>
+              <div class="patient_man_addOrless">
+                <!-- 紅- -->
+                <span></span>
+                <img src="" class="patient_sexual_addOrless_arrorw" />
+                比上個月
+                <span></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 主治/兼職醫師數 -->
+          <div id="docNum"></div>
+          <!-- 回診率區域 -->
+          <div id="ReturnVisitRate"></div>
+
+          <!-- 診椅數 -->
+          <div id="clinic_chair">
+            <div class="patient_sexual_title">
+              <img src="../images/titleIcon.png" />診椅數
+            </div>
+            <input type="number" min="0" max="999" />
+          </div>
+        </div>
+        <div
+          style="display: flex;margin-top: 57px;justify-content: center;width:100%;"
+        >
+          <!-- 排行榜 -->
+          <div id="leaderboard_main"></div>
+        </div>
+        <div
+          style="display: flex;margin-top: 57px;justify-content: space-evenly;width:100%;"
+        >
+          <!-- 點診率 -->
+          <div id="dianJanRate"></div>
+          <!-- 初診點診率 -->
+          <div id="firstJandianJanRate"></div>
+        </div>
+        <!--  -->
+        <div
+          style="display: flex;margin-top: 57px;justify-content: space-evenly;width:100%;"
+        >
+          <!-- 總金額 -->
+          <div id="Total_Amount_area">
+            <div class="top_text">總金額</div>
+            <div class="digital_area">
+              <div
+                id="Total_Amount_lastmonth"
+                class="lastmonth_statistics"
+              ></div>
+              <div class="compare_area">
+                <span id="Total_Amount_compare" class="compare_up"></span>
+                <span>比前一個月</span>
+                <span id="Total_Amount_compare_updown"></span>
+              </div>
+            </div>
+            <div id="Total_Amount"></div>
+          </div>
+          <!-- 診次數 -->
+          <div id="Consultation_Count_area">
+            <div class="top_text">診次數</div>
+            <div class="digital_area">
+              <div
+                id="Consultation_Count_lastmonth"
+                class="lastmonth_statistics"
+              ></div>
+              <div class="compare_area">
+                <span id="Consultation_Count_compare"></span>
+                <span>比前一個月</span>
+                <span id="Consultation_Count_compare_updown"></span>
+              </div>
+            </div>
+            <div id="Consultation_Count"></div>
+          </div>
+          <!-- 單一診營業額 -->
+          <div id="Single_Turnover_area">
+            <div class="top_text">單一診營業額</div>
+            <div class="digital_area">
+              <div
+                id="Single_Turnover_lastmonth"
+                class="lastmonth_statistics"
+              ></div>
+              <div class="compare_area">
+                <span id="Single_Turnover_compare"></span>
+                <span>比前一個月</span>
+                <span id="Single_Turnover_compare_updown"></span>
+              </div>
+            </div>
+            <div id="Single_Turnover"></div>
+          </div>
+        </div>
+        <!--  -->
+        <div
+          style="display: flex;margin-top: 57px;justify-content: space-evenly;width:100%;"
+        >
+          <!-- 治療項目/治療項目金額區域 -->
+          <div id="Item_Amount_area">
+            <div class="top_text">治療項目/治療項目金額</div>
+            <div id="Item_Amount"></div>
+          </div>
+          <!-- 病患地址分布 -->
+          <div id="PatientAddress_area">
+            <div class="top_text">病患地址分布</div>
+            <div id="PatientAddress"></div>
+          </div>
+        </div>
+        <div
+          style="display: flex;margin-top: 57px;justify-content: center;width:100%;"
+        >
+          <!-- 時間分布 -->
+          <div id="TimeDistributed_area">
+            <div id="td_topbar">
+              <span id="td_topbar_text_first">統計分類:</span>
+              <label for="age_time">
+                <input
+                  type="radio"
+                  id="age_time"
+                  name="td_type"
+                  checked="checked"
+                />
+                <span>年齡+時段分類</span>
+              </label>
+              <label for="registered_time">
+                <input type="radio" id="registered_time" name="td_type" />
+                <span>掛號時段分布</span>
+              </label>
+              <label for="reservation_time">
+                <input type="radio" id="reservation_time" name="td_type" />
+                <span>預約時段率</span>
+              </label>
+            </div>
+            <div class="top_text" id="timedistributed_text">年齡+時段分類</div>
+            <div id="Time_Distributed"></div>
+          </div>
+        </div>
+        <div style="width: 100%;height: 57px"></div>
+      </div>
+    </div>
+    <script src="../resources/core/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../resources/core/echarts.js"></script>
+    <script src="../resources/core/echarts-liquidfill.js"></script>
+    <script src="../resources/js/chart.js"></script>
+    <script src="../resources/js/Chart_D.js"></script>
+    <script src="../resources/js/menu.js"></script>
+  </body>
+</html>

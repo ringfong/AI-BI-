@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+  <title>自費填入</title>
+
+  <!-- CSS引用 -->  
+  <link rel="stylesheet" href="../resources/core/jquery-ui/1.10.3/jquery-ui.css" />
+  
+  <!-- CSS控制 -->
+  <link rel="stylesheet" href="../resources/css/SelfFilling.css" />
+  
+  <!-- JQ引用 -->
+  <script src="../resources/core/jquery/1.11.1/jquery.min.js"></script>
+  <script src="../resources/core/jquery-ui/1.10.3/jquery-ui.js"></script>    
+  <!-- echarts引用 -->
+  <script src="../resources/core/echarts.js"></script>
+  <script src="../resources/core/echarts-liquidfill.js"></script>
+  
+</head>
+<body>
+  <div id="allbackground">
+    <!-- 自費填入區域 -->
+    <div id="SelfFilling_area">
+      <!-- 自費金額分類區域 -->
+      <div id="SelfFilling_class">
+        <div class="SelfFilling_title">自費金額分類</div>
+        <div id="SelfFilling_class_button_area">
+          <!-- 讀取時填入診所與醫生 -->
+        </div>
+      </div>
+      <!-- 自費金額項目統計 -->
+      <div id="SelfFilling_statistics">
+        <div class="SelfFilling_title">自費金額項目統計</div>
+        <div id="SelfFilling_statistics_button_area">
+          <!-- 讀取時填入年份 -->
+        </div>
+      </div>
+      <!-- 表格區域 -->
+      <div>
+        <table  id="SelfFilling_table1">
+          <thead>
+            <tr id="ROCyearandmonth">
+              <td style="background-color: #B8EBFF;">健保金額</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="HISAmount">
+              <td style="background-color: #B8EBFF;">健保金額</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr id="project0">
+              <td style="background-color: #B8EBFF;">自費金額</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+            </tr>
+            <tr id="project1">
+              <td style="background-color: #B8EBFF;">加總金額</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr id="project2">
+              <td style="background-color: #B8EBFF;">看診次數</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" /></td>
+            </tr>
+            <tr id="project3">
+              <td style="background-color: #B8EBFF;">平均單價</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- 更多細項表格 -->
+      <div>
+        <table id="SelfFilling_table2">
+          <tbody>
+            <tr id="project4">
+              <td style="background-color: #D9FFB0
+              ;">自費洗牙(次)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project5">
+              <td style="background-color: #D9FFB0
+              ;">自費塗氟(次)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project6">
+              <td style="background-color: #D9FFB0
+              ;">自費補牙(次)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project7">
+              <td style="background-color: #D9FFB0
+              ;">X光片(次)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project8">
+              <td style="background-color: #D9FFB0
+              ;">溝隙封填(次)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project9">
+              <td style="background-color: #D9FFB0
+              ;">骨膠原蛋白(次)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr id="project10">
+              <td style="background-color: #FFD5D5
+              ;">一日假牙/臨時假牙(顆)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project11">
+              <td style="background-color: #FFD5D5
+              ;">貼片(顆)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project12">
+              <td style="background-color: #FFD5D5
+              ;">全瓷牙冠(顆)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project13">
+              <td style="background-color: #FFD5D5
+              ;">半貴金屬牙冠(顆)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project14">
+              <td style="background-color: #FFD5D5
+              ;">貴金屬牙冠(顆)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project15">
+              <td style="background-color: #FFD5D5
+              ;">高貴金屬牙冠(顆)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project16">
+              <td style="background-color: #FFD5D5
+              ;">牙柱釘(顆)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project17">
+              <td style="background-color: #FFD5D5
+              ;">Jelstar&nbsp;鈀合金(顆)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project18">
+              <td style="background-color: #FFD5D5
+              ;">cameo&nbsp;金合金(顆)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project19">
+              <td style="background-color: #FFD5D5
+              ;">INLAY/ONLAY(顆)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr id="project20">
+              <td style="background-color: #FEEDBF
+              ;">隱形矯正(人)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project21">
+              <td style="background-color: #FEEDBF
+              ;">其他矯正(人)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project22">
+              <td style="background-color: #FEEDBF
+              ;">空間維持器</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr id="project23">
+              <td style="background-color: #FFE1CE
+              ;">TCI(人)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project24">
+              <td style="background-color: #FFE1CE
+              ;">植牙補骨手術GBR(顆)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project25">
+              <td style="background-color: #FFE1CE
+              ;">植牙補肉手術FGG(顆)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project26">
+              <td style="background-color: #FFE1CE
+              ;">牙冠增高術CLP(顆)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project27">
+              <td style="background-color: #FFE1CE
+              ;">IMP-1(顆)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project28">
+              <td style="background-color: #FFE1CE
+              ;">IMP-3(顆)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project29">
+              <td style="background-color: #FFE1CE
+              ;">AO4-1(顆)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project30">
+              <td style="background-color: #FFE1CE
+              ;">AO4-3(顆)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project31">
+              <td style="background-color: #FFE1CE
+              ;">AO4-4(顆)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr id="project32">
+              <td style="background-color: #F8E1FE
+              ;">牙周雷射(人)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr id="project33">
+              <td style="background-color: #F1F1F1
+              ;">冷光美白(人)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project34">
+              <td style="background-color: #F1F1F1
+              ;">居家美白(人)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr id="project35">
+              <td style="background-color: #C8FFF3
+              ;">大臼齒(顆)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project36">
+              <td style="background-color: #C8FFF3
+              ;">前牙(顆)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr id="project37">
+              <td style="background-color: #C8FFF3
+              ;">小臼齒(顆)</td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+              <td><input type="text" readonly="readonly" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" onKeyDown="if(this.value.length==6) return false;" ></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- 更多與儲存按鍵區 -->
+      <div id="SaveButton_area">
+        <div id="SaveButton_More">更多項目</div>
+        <div id="SaveButton_Save">儲存並繪製</div>
+      </div>
+      <!-- 圖表顯示區 -->
+      <div id="EchartsView">
+        <!-- 平均單價金額統計圖 -->
+        <div id="Average_Price_Statistics_area">
+          <div class="top_text">平均單價金額統計圖</div>
+          <div id="Average_Price_Statistics"></div>
+        </div>
+        <!-- 今年前10名自費項目 -->
+        <div id="TOP10_OwnExpense_area">
+          <div class="top_text">今年前10名自費項目</div>
+          <div id="TOP10_border">
+            <div id="TOP10_TitleText">
+              <div id="TOP10_Project">自費項目</div>
+              <div id="TOP10_Count">自費計次</div>
+              <div id="TOP10_Sort">自費排序</div>
+            </div>
+            <div id="TOP10_OwnExpense"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+  <!-- JS控制 -->  
+  <script src="../resources/js/SelfFilling.js"></script>
+</body>
+</html>
